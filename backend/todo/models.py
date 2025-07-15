@@ -6,9 +6,10 @@ class Event(models.Model):
     description = models.TextField(blank=True)
     due_date = models.DateTimeField()
     created_at = models.DateTimeField("created at", auto_now_add=True)
+    done = models.BooleanField(default=False)
     
     def __str__(self):
-        return (self.title + " - " + str(self.due_date)) 
+        return (self.title + " - Due: " + str(self.due_date)) 
     
 class CompletedEvent(models.Model):
     event = models.ForeignKey(Event, on_delete=models.CASCADE)

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Completed Events</title>
+    </head>
+    <body>
+        <h1>Completed Events</h1>
+        <ul>
+            {% for event in completed_events %}
+                <li>
+                    <span>{{ event.title }} - {{ event.due_date }}</span>
+                    {% if event.description %}
+                        <p>{{ event.description }}</p>
+                    {% endif %}
+                    {% if event.done %}
+                        <p>Status: Completed</p>
+                    {% else %}
+                        <p>Status: Not Completed</p>
+                    {% endif %}
+                </li>
+            {% empty %}
+                <li>No completed events.</li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'todo:index' %}">Back to Upcoming Events</a>
+    </body>
+</html>

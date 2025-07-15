@@ -1,12 +1,21 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import redirect, render, get_object_or_404
+from django.http import HttpResponse, Http404
+from django.template import loader
+from .models import Event, CompletedEvent
+
 
 # Create your views here.
 def index(request):
-    return HttpResponse("Hello, world. You're at the todo index.")
+    #can filter events based on todays date
+    events = Event.objects.filter(done=False)
+    return render(request, 'todo/index.html', {'events':events})
 
-def detail(request, event_id):
-    return HttpResponse(f"You're looking at event {event_id}.")
+def detail(request):
+    completed_events = Event.objects.filter(done=True)
+    return render(request, 'todo/detail.html', {'completed_events': completed_events})
 
-
-    
+def mark_done(request, event_id):
+    event = get_object_or_404(Event, id=event_id)
+    event.done = True
+    event.save()
+    return redirect('index')
