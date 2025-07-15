@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Todo List</title>
+    </head>
+    <body>
+        <h1>Upcoming Events</h1>
+        <ul>
+            {% for event in events %}
+                <li>
+                    <span>{{ event.title }} - {{ event.due_date }}</span>
+                    <form method="post" action="{% url 'todo:mark_done' event.id %}" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit">Mark as Done</button>
+                    </form>
+                    <ul>
+                        <li>
+                            {% if event.description %}
+                                <p>{{event.description}}</p>
+                            {% endif %}
+                        </li>
+                    </ul>
+                </li>
+            {% empty %}
+                <li>No upcoming events.</li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'todo:detail' %}">View Completed Events</a>
+    </body>
+</html>
