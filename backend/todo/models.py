@@ -10,7 +10,7 @@ class Event(models.Model):
     
     def __str__(self):
         return (self.title + " - Due: " + str(self.due_date)) 
-    
+
 class CompletedEvent(models.Model):
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
     done = models.BooleanField(default=False)

@@ -1,3 +1,7 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'todo/style.css' %}">
+
 <!doctype html>
 <html lang="en">
     <head>
@@ -15,7 +19,7 @@
                         <button type="submit">Mark as Done</button>
                     </form>
                     <ul>
-                        <li>
+                        <li class="event-description">
                             {% if event.description %}
                                 <p>{{event.description}}</p>
                             {% endif %}
@@ -26,6 +30,26 @@
                 <li>No upcoming events.</li>
             {% endfor %}
         </ul>
+        <h2>Add New Event</h2>
+        <form method="post" action="{% url 'todo:create_event' %}">
+            {% if form.errors %}
+                <div class="error">
+                    <p>Please correct the errors below:</p>
+                    <ul>
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+            {% csrf_token %}
+            <input type="text" name="title" placeholder="Event Title" required>
+            <textarea name="description" placeholder="Event Description"></textarea>
+            <input type="datetime-local" name="due_date" required>
+            <button type="submit">Create Event</button>
+        </form>
         <a href="{% url 'todo:detail' %}">View Completed Events</a>
     </body>
 </html>
