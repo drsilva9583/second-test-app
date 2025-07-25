@@ -7,7 +7,7 @@ from .models import Event, CompletedEvent
 # Create your views here.
 def index(request):
     #can filter events based on todays date
-    events = Event.objects.filter(done=False)
+    events = Event.objects.filter(done=False).order_by('due_date')
     return render(request, 'todo/index.html', {'events':events})
 
 def detail(request):
