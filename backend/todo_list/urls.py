@@ -22,4 +22,5 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("todo/", include("todo.urls")),
     path("__debug__/", include(debug_toolbar.urls)),
+    path("api/", include("todo.api_urls")),  # New REST API endpoints
 ]
