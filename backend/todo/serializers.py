@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Event, CompletedEvent
+from .models import Event
 
 class EventSerializer(serializers.ModelSerializer):
     class Meta:
@@ -9,11 +9,3 @@ class EventSerializer(serializers.ModelSerializer):
         
     def create(self, validated_data):
         return Event.objects.create(**validated_data)
-    
-class CompletedEventSerializer(serializers.ModelSerializer):
-    event = EventSerializer(read_only=True)
-
-    class Meta:
-        model = CompletedEvent
-        fields = ['id', 'event', 'completed_at']
-        read_only_fields = ['completed_at']

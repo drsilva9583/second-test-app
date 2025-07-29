@@ -62,7 +62,7 @@ const EventCard = ({ event, onMarkDone, onMarkUndone, onDelete, isCompleted }) =
       <div className="event-dates">
         <div className="due-date">
           <span className="label">📅 Due:</span>
-          <span className="date">{formatDate(event.due_date)}</span>
+          <span className="date-due-text">{formatDate(event.due_date)}</span>
           {!isCompleted && (
             <span className={`days-info ${overdue ? 'overdue' : ''}`}>
               {overdue 
@@ -77,7 +77,7 @@ const EventCard = ({ event, onMarkDone, onMarkUndone, onDelete, isCompleted }) =
           )}
         </div>
         <div className="created-date">
-          <span className="label">🕒 Created:</span>
+          <span className="created-label">🕒 Created:</span>
           <span className="date">{formatDate(event.created_at)}</span>
         </div>
       </div>

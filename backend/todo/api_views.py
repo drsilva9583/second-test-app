@@ -2,8 +2,8 @@ from rest_framework import generics, status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
-from .models import Event, CompletedEvent
-from .serializers import EventSerializer, CompletedEventSerializer
+from .models import Event
+from .serializers import EventSerializer
 
 class EventListCreateView(generics.ListCreateAPIView):
     serializer_class = EventSerializer
@@ -11,28 +11,8 @@ class EventListCreateView(generics.ListCreateAPIView):
     def get_queryset(self):
         done = self.request.query_params.get('done', None)
         if done is not None:
-            return Event.objects.filter(done=done.lower() == 'true').order_by('-created_at')
-        return Event.objects.all().order_by('-created_at')
-
-class EventDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Event.objects.all()
-    serializer_class = EventSerializer
-
-from rest_framework import generics, status
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
-from django.shortcuts import get_object_or_404
-from .models import Event, CompletedEvent
-from .serializers import EventSerializer, CompletedEventSerializer
-
-class EventListCreateView(generics.ListCreateAPIView):
-    serializer_class = EventSerializer
-    
-    def get_queryset(self):
-        done = self.request.query_params.get('done', None)
-        if done is not None:
-            return Event.objects.filter(done=done.lower() == 'true').order_by('-created_at')
-        return Event.objects.all().order_by('-created_at')
+            return Event.objects.filter(done=done.lower() == 'true').order_by('due_date')
+        return Event.objects.all().order_by('due_date')
 
 class EventDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Event.objects.all()
