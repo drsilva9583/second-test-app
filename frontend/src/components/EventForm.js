@@ -87,7 +87,7 @@ const EventForm = ({ onCreateEvent }) => {
             placeholder="Enter event description (optional)..."
             value={formData.description}
             onChange={handleChange}
-            rows="3"
+            rows="2"
           />
         </div>
         

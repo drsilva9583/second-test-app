@@ -60,7 +60,7 @@ const EventCard = ({ event, onMarkDone, onMarkUndone, onDelete, isCompleted }) =
     openModal(
       'Mark As Completed',
       'Are you sure you want to mark this event as completed?',
-      'default',
+      'success',
       () => onMarkDone(event.id)
     );
   };
@@ -78,7 +78,7 @@ const EventCard = ({ event, onMarkDone, onMarkUndone, onDelete, isCompleted }) =
     openModal(
       'Delete Event',
       'Are you sure you want to delete this event? This action cannot be undone.',
-      'delete',
+      'danger',
       () => onDelete(event.id)
     );
   };
@@ -144,6 +144,7 @@ const EventCard = ({ event, onMarkDone, onMarkUndone, onDelete, isCompleted }) =
           title={modalState.title}
           message={modalState.message}
           confirmText={modalState.type === 'danger' ? 'Delete' : 'Confirm'}
+          cancelText="Cancel"
           type={modalState.type}
         />
       </>

@@ -36,7 +36,7 @@ const ConfirmationModal = ({
 
                 <div className='modal-actions'>
                     <button 
-                        className={`btn ${type == 'danger' ? 'btn-danger' : 'btn-confirm'}`}
+                        className={`btn ${type == 'danger' ? 'btn-danger' : type == 'warning' ? 'btn-warning' : 'btn-confirm'}`}
                         onClick={handleConfirm}
                     >
                         {confirmText}
