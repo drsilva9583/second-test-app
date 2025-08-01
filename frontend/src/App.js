@@ -5,7 +5,9 @@ import EventForm from './components/EventForm';
 import ScrollToTopButton from './components/ScrollToTop';
 import './App.css';
 
-const API_BASE_URL = 'http://localhost:9000/api';
+const API_BASE_URL = process.env.NODE_ENV === 'production' 
+  ? 'https://second-test-app-zo2d.onrender.com/api'  // Update with your backend URL
+  : 'http://localhost:9000/api';
 
 function App() {
   const [events, setEvents] = useState([]);
