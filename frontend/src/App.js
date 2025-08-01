@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import EventList from './components/EventList';
 import EventForm from './components/EventForm';
+import ScrollToTopButton from './components/ScrollToTop';
 import './App.css';
 
 const API_BASE_URL = 'http://localhost:9000/api';
@@ -137,6 +138,7 @@ function App() {
           />
         )}
       </main>
+      <ScrollToTopButton />
     </div>
   );
 }
