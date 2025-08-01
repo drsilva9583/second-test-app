@@ -156,7 +156,7 @@ REST_FRAMEWORK = {
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
-    "https://second-test-app-zo2d.onrender.com",  # Update this with your frontend URL
+    "https://todo-app-jl8c.onrender.com",  # Update this with your frontend URL
 ]
 
 CORS_ALLOW_CREDENTIALS = True
